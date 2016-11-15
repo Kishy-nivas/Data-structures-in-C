@@ -92,7 +92,6 @@ if(temp->next==NULL&&temp->data!=x)
 {
 printf("Element %d is not present in the list\n",x);
 return;
-getch();
 }
 else
 {
