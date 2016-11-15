@@ -94,21 +94,32 @@ printf("Element %d is not present in the list\n",x);
 return;
 getch();
 }
-else{
+else
+{
 if(start->data==x)
+{
 start->itemnum-=x1;
+if(start->itemnum<=0)
+deleteitem(x);
+}
 else if(end->data==x)
 {
 end->itemnum-=x1;
+if(end->itemnum<=0)
+deleteitem(x);
 }
 else
 {
+if(temp->data==x)
 temp->itemnum-=x1;
+if(temp->itemnum<=0)
+deleteitem(x);
 }
 }
 return;
 }
 }
+
 
 
 
