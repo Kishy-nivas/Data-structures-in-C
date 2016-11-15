@@ -98,19 +98,32 @@ else
 {
 if(start->data==x)
 {
+while(x1>start->itemnum)
+{printf("Maximum stock value exceeded please order below %d for the order item '%s'",start->itemnum,start->name);
+return;
+}
 start->itemnum-=x1;
 if(start->itemnum<=0)
 deleteitem(x);
 }
 else if(end->data==x)
 {
+while(x1>end->itemnum)
+{
+printf("Maximum stock value exceeded please order below %d for the order item '%s'",end->itemnum,end->name);
+return ;
+}
 end->itemnum-=x1;
 if(end->itemnum<=0)
 deleteitem(x);
 }
-else
+else if(temp->data==x)
 {
-if(temp->data==x)
+while(x1>temp->itemnum)
+{
+printf("Maximum stock value exceeded please order below %d for the order item '%s'",temp->itemnum,temp->name);
+return;
+}
 temp->itemnum-=x1;
 if(temp->itemnum<=0)
 deleteitem(x);
