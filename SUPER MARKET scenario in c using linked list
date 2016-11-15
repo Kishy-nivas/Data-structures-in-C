@@ -1,0 +1,217 @@
+#include<stdio.h>
+#include<stdlib.h>
+char n[30];
+
+typedef struct Node
+{
+int data;
+int itemnum;
+char name[30];
+struct Node *next;
+}node;
+
+node *new,*end,*start,*temp,*prev,*r;
+
+int x,pos,x1;
+
+int isempty()
+{
+return(start==NULL);
+}
+
+void insertbeg(int x,int x1,char n[30])
+{
+new=(node *)malloc(sizeof(node));
+new->data=x;
+new->itemnum=x1;
+strcpy(new->name,n);
+if(isempty())
+{
+new->next=NULL;
+end=start=new;
+}
+else
+{
+new->next=start;
+start=new;
+}
+}
+
+void deleteitem( int x)
+{
+if(isempty())
+{
+printf("Empty , can't delete");
+}
+else
+{
+temp=start;
+while(temp->next!=NULL && temp->data!= x)
+{
+prev=temp;
+temp = temp-> next;
+}
+if(temp->next==NULL&&temp->data!=x)
+{
+printf("Element %d is not present in the list\n",x);
+return;
+}
+else{
+if(start->data==x)
+start=start->next;
+else if(end->data==x)
+{
+end=prev;
+end->next=NULL;
+}
+else
+{
+prev->next=temp->next;
+}
+}
+return;
+}
+}
+
+void order( int x,int x1)
+{
+if(isempty())
+{
+printf("Empty , can't delete");
+getch();
+}
+else
+{
+temp=start;
+while(temp->next!=NULL && temp->data != x)
+{
+prev=temp;
+temp = temp-> next;
+}
+if(temp->next==NULL&&temp->data!=x)
+{
+printf("Element %d is not present in the list\n",x);
+return;
+getch();
+}
+else{
+if(start->data==x)
+start->itemnum-=x1;
+else if(end->data==x)
+{
+end->itemnum-=x1;
+}
+else
+{
+temp->data-=x1;
+}
+}
+return;
+}
+}
+
+
+
+void print(node *r)
+{
+r=start;
+if(r==NULL)
+{
+return;
+}
+while(r!=NULL)
+{
+printf(" \n item code:%d",r->data);
+printf("\n item name : %s",r->name);
+printf("\n item num : %d",r->itemnum);
+r=r->next;
+}
+}
+
+
+
+int main()
+{
+int choice;
+int main ,choice2;	char e[10];
+printf("\n  \t \t\t\t SUPER MARKET ");
+do
+{
+printf("\n \n 1. Admin login");
+printf("\n \n 2.customer login ");
+printf("\n \n 3.Exit");
+printf("\n \n Enter the choice : ");
+scanf("%d",&main);
+if(main==1)
+{
+do
+{
+printf("\n 1. Add item ");
+printf("\n 2. Delete item ");
+printf("\n 3. Display item");
+printf("\n 4. back to homepage ");
+printf("\n\n  Enter the choice :");
+scanf("%d",&choice);
+
+switch(choice)
+{
+case 1:
+printf("\n\n Enter the item code:");
+scanf("%d",&x);
+printf("\n\n Enter the item name:");
+scanf("%s",n);
+printf("\n\n Enter the number of item:");
+scanf("%d",&x1);
+insertbeg(x,x1,n);
+printf("\n");
+break;
+
+case 2:
+printf("\n Enter the item code to delete item :");
+scanf("%d",&x);
+deleteitem(x);
+print(r);
+break;
+
+case 3:
+printf("The list is ");
+print(r);
+printf("\n\n");
+break;
+
+case 4:
+break;
+}
+}while(choice!=4);
+}
+if(main==2){
+do
+{
+printf("\n\n  1. view items ");
+printf("\n\n  2. order items via item code");
+printf("\n\n  3. Back to home page\n");
+scanf("%d",&choice2);
+switch(choice2)
+{
+case 1:
+print(r);
+break;
+
+case 2:
+printf("\n Enter the item code to order : ");
+scanf("%d",&x);
+printf("\n Enter the number of items : ");
+scanf("%d",&x1);
+order(x,x1);
+break;
+
+case 3:
+break;
+default :
+printf("\n\n Invalid option ");
+}
+}while(choice2!=3);
+}
+}while(main!=3);
+return 0;
+}
