@@ -103,7 +103,7 @@ end->itemnum-=x1;
 }
 else
 {
-temp->data-=x1;
+temp->itemnum-=x1;
 }
 }
 return;
